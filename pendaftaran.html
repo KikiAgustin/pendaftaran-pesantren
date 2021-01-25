@@ -1,41 +1,209 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 
 <head>
-    <!--Import Google Icon Font-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
+  <title>Pondok Pesantren Nurul Huda</title>
+  <meta content="IE=edge" http-equiv="x-ua-compatible" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="yes" name="apple-touch-fullscreen" />
+  <!-- Fonts -->
+  <!-- Styles -->
+  <link href="assets/css/materialize.min.css" rel="stylesheet" type="text/css" />
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+  <link href="assets/css/termometer.css" rel="stylesheet" type="text/css" />
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/fastclick.js"></script>
+  <script src="assets/js/sweetalert.min.js"></script>
+  <script type="text/javascript" src="assets/js/datedropper.pro.min.js"></script>
+  <script type="text/javascript" src="assets/controller/depresi_daftar.js"></script>
+  <style>
+    .picker {
+      position: relative;
+    }
 
-    <!-- My Style -->
-    <link rel="stylesheet" href="">
+    div.datedropper .picker ul.pick .pick-arw {
+      opacity: 1;
+    }
 
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    div.datedropper {
+      --dd-color1: #669820;
+      --dd-color2: #FFF;
+      --dd-color3: #4D4D4D;
+      --dd-color4: #FFF;
+
+      --dd-radius: 8px;
+      --dd-width: 180px;
+      --dd-shadow: 0 0 32px 0px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="row">
-            <div class="col s1 ">
-                <img src="frontend/images/ic_bank@2x.png" alt="">
-            </div>
-            <div class="col s11">
-                <p class="center-align kop-surat">
-                    Formulir Pendaftaran Santri baru
-                    <br>
-                    Pondok pesantren Nurul Huda
-                    <br>
-                    Cibojong Cisurupan Garut
-                </p>
-            </div>
-        </div>
-    </div>
 
-    <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+  <div style="text-align: center;" class="container logo">
+    <img src="assets/img/logo.png" class="responsive-img logo" alt="">
+    <div class="judul-kop ">
+      <p>
+        Formulir Pendaftaran Santri Baru
+        <br>
+        Pondok Pesantren Nurul Huda
+        <br>
+        Cibojong Cisurupan Garut
+      </p>
+      <p><i>JL. Keramat, RT/RW 03/04 Cibojong, Balewangi, Cisurupan, Garut</i></p>
+    </div>
+  </div>
+
+  <!-- <div class="row kop-surat ">
+    <div class="col s3 m2 l2 ">
+      <img src="assets/img/logo.png" class="responsive-img logo" alt="">
+    </div>
+    <div class="col s9 m10 l10 judul-kop ">
+      <p>
+        Formulir Pendaftaran Santri Baru
+        <br>
+        Pondok Pesantren Nurul Huda
+        <br>
+        Cibojong Cisurupan Garut
+      </p>
+      <p><i>JL. Keramat, RT/RW 03/04 Cibojong, Balewangi, Cisurupan, Garut</i></p>
+    </div>
+  </div> -->
+
+  <div class="m-scene" id="main">
+    <!-- Page Content -->
+    <div id="content" class="grey-blue page" style="margin-top: 0px !important; ">
+      <!-- Toolbar -->
+      <div class="isi-form">
+        <!-- Form -->
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="nama_lengkap" type="text" class="validate" autocomplete="off" required />
+            <label for="nama_lengkap"> <strong>Nama Lengkap</strong></label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="email" type="email" class="validate" autocomplete="off" required />
+            <label for="email"> <strong>Email</strong></label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="telepon" type="number" class="validate" autocomplete="off" required />
+            <label for="telepon"> <strong>Telepon</strong></label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <strong class="jk">jenis Kelamin</strong>
+            <select id="jenis_kelamin" class="browser-default" required>
+              <option value="" disabled selected>
+                <p class="jk">--Pilih--</p>
+              </option>
+              <option value="laki-laki">laki-laki</option>
+              <option value="Perempuan">Perempuan</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field  col s12 ">
+            <strong class="jk">Tanggal Lahir</strong>
+          </div>
+          <div style="margin-top: 15px;" class="input-field  col s12 ">
+            <strong class="jk">TL</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="validate" id="tanggal_lahir" type="type" data-dd-large-only="true" placeholder="Tanggal Lahir"
+              required onchange="dob(this.value)">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <strong class="jk">Status</strong>
+            <select id="status" class="browser-default" required>
+              <option value="" class="jk" disabled selected>--Pilih--</option>
+              <option value="Belum Menikah">Belum Menikah</option>
+              <option value="Menikah">Menikah</option>
+              <option value="Duda">Duda</option>
+              <option value="Janda">Janda</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <strong class="jk">Provinsi</strong>
+            <select id="provinsi" class="browser-default" required>
+              <!-- <option value="" class="jk" disabled selected>--Pilih--</option>
+              <option value="Jawa Barat">Jawa Barat</option> -->
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <strong class="jk">Kota / kabupaten</strong>
+            <select id="kotaid" class="browser-default" required>
+              <!-- <option value="" class="jk" disabled selected>--Pilih--</option>
+              <option value="Bandung">Bandung</option> -->
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <strong class="jk">pendidikan</strong>
+            <select id="pendidikan" class="browser-default" required>
+              <option value="" class="jk" disabled selected>--Pilih--</option>
+              <option value="SD">SD</option>
+              <option value="SLTP">SLTP</option>
+              <option value="SLTA">SLTA</option>
+              <option value="D3">D3</option>
+              <option value="S1">S1</option>
+              <option value="S2">S2</option>
+              <option value="S3">S3</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="pekerjaan" type="text" class="validate" autocomplete="off" required />
+            <label for="pekerjaan"> <strong>Pekerjaan</strong></label>
+          </div>
+        </div>
+
+
+
+
+        <button
+          class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4 button button-block button-positive"
+          id="signup">Mulai Tes Mandiri</button>
+
+
+      </div>
+
+      <!-- Main Content -->
+      <div class="animated fadein" id="bloglist"></div>
+      <br /><br />
+    </div>
+    <!-- End of Page Container -->
+
+
+
+    <script src="assets/js/jquery.swipebox.min.js"></script>
+    <script src="assets/js/jquery.smoothState.min.js"></script>
+    <script src="assets/js/materialize.min.js"></script>
+    <script src="assets/js/swiper.min.js"></script>
+    <script src="assets/js/jquery.mixitup.min.js"></script>
+    <script src="assets/js/functions.js"></script>
+
 </body>
 
 </html>
